@@ -76,7 +76,7 @@
 </body>
 </html>
 <?php
-		$fupdate = fopen("../order.txt", "r+");
+		$fupdate = fopen("./order.txt", "r+");
 		if (flock($fupdate, LOCK_EX)) {     
 			ftruncate($fupdate, 0); 
 			fwrite($fupdate, "Total number of apples: " + $invA);
@@ -87,6 +87,5 @@
 		else {
 			echo "Couldn't get the lock!";
 		}
-		fclose($fp);
+		fclose($fupdate);
 ?>
-
