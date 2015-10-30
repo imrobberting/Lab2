@@ -80,7 +80,7 @@
 http://php.net/manual/en/function.ftruncate.php#104455
 > "If you want to empty a file of it's contents bare in mind that opening a file in w mode truncates the file automatically"
 */
-		$fupdate = fopen("./order.txt", "w");
+		$fupdate = fopen("./order.txt", "wb");
 		if (flock($fupdate, LOCK_EX)) {     
 			fwrite($fupdate, "Total number of apples: " + $invA);
 			fwrite($fupdate, "Total number of oranges: " + $invO);
