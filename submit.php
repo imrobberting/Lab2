@@ -3,7 +3,7 @@
 		$file = 'order.txt';
 		$order = fopen($file, 'r')
 			or exit("unable to open file ($file)");
-		for(i=0,i++,i<3){
+		for($i=0,$i++,$i<3){
 			$contents[i] = fgets($order);
 		}
 		fclose($order);
