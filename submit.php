@@ -82,9 +82,9 @@ http://php.net/manual/en/function.ftruncate.php#104455
 */
 		$fupdate = fopen("./order.txt", "wb");
 		if (flock($fupdate, LOCK_EX)) {     
-			fwrite($fupdate, "Total number of apples: " + $invA);
-			fwrite($fupdate, "Total number of oranges: " + $invO);
-			fwrite($fupdate, "Total number of bananas: " + $invB);
+			fwrite($fupdate, "Total number of apples: ".$invA."\r\n");
+			fwrite($fupdate, "Total number of oranges: ".$invO."\r\n");
+			fwrite($fupdate, "Total number of bananas: ".$invB."\r\n");
 			flock($fupdate, LOCK_UN); 
 		} 
 		else {
