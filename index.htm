@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Fruit Vendor</title>
+		<script type = "text/javascript">
+		function chkQty1() {
+			var num = document.getElementById("qtyA");
+
+			var chk = num.value.search(/^\d+/);
+
+			if (chk != 0) {
+				alert("Please input a digit.");
+				computeBill();
+			    num.focus();
+			    num.select();
+			    return false;
+      		} 
+      		else
+      			computeBill();
+        		return true;
+        }
+
+        function chkQty2() {
+			var num = document.getElementById("qtyO");
+
+			var chk = num.value.search(/^\d+/);
+
+			if (chk != 0) {
+				alert("Please input a digit.");
+				computeBill();
+			    num.focus();
+			    num.select();
+			    return false;
+      		} 
+      		else
+      			computeBill();
+        		return true;
+        }
+
+        function chkQty3() {
+			var num = document.getElementById("qtyB");
+
+			var chk = num.value.search(/^\d+/);
+
+			if (chk != 0) {
+				alert("Please input a digit.");
+				computeBill();
+			    num.focus();
+			    num.select();
+			    return false;
+      		} 
+      		else
+      			computeBill();
+        		return true;
+        }
+
+        function computeBill() {
+        	var a = document.getElementById("qtyA").value;
+        	var o = document.getElementById("qtyO").value;
+        	var b = document.getElementById("qtyB").value;
+
+        	var t = a * 0.69 + o * 0.59 + b * 0.39;
+        	total = t.toFixed(2);
+        	document.getElementById("bill").value = total;
+        }
+
+        function isEmpty() {
+        	if (document.getElementById("qtyA").value == "" || document.getElementById("qtyO").value == "" ||document.getElementById("qtyB").value == "" ||
+        		document.getElementById("name").value == "" || (document.getElementById("visa").checked == false && document.getElementById("master").checked == false && document.getElementById("discover").checked == false)){
+        		alert("Please fill out all fields.");
+        	}
+        }
+		</script>
+	</head>
+	<body>
+		<form action="submit.php" method="post">
+			<p>Name: <input type="text" name="customer" id="name"></p>
+			&nbsp;
+			<table border="border">
+				<tr>
+          			<th> Product Name </th>
+          			<th> Unit Price (SGD) </th>
+          			<th> Quantity </th>
+        		</tr>
+        		<tr>
+        			<td> Apple </td>
+        			<td> 0.69 </td>
+        			<td> <input type="text" name="apples" id="qtyA"> </td>
+        		</tr>
+				<tr>
+        			<td> Orange </td>
+        			<td> 0.59 </td>
+        			<td> <input type="text" name="oranges" id="qtyO"> </td>
+        		</tr>
+        		<tr>
+        			<td> Banana </td>
+        			<td> 0.39 </td>
+        			<td> <input type="text" name="bananas" id="qtyB"> </td>
+        		</tr>
+        	</table>
+			&nbsp;
+			<p>Total Cost: <input type="text" name="total" id="bill"onfocus = "this.blur();"></p>
+			&nbsp;
+			<p>
+				<input type = "radio" name = "mode" value = "Visa" id="visa"/> Visa
+				<input type = "radio" name = "mode" value = "MasterCard" id="master"/> MasterCard
+				<input type = "radio" name = "mode" value = "Discover" id="discover"/> Discover
+			</p>
+			&nbsp;
+			<input type = "submit" value = "Submit" onclick = "isEmpty();"/>
+		</form>
+		<script type = "text/javascript">
+		document.getElementById("qtyA").onchange = chkQty1;
+		document.getElementById("qtyO").onchange = chkQty2;
+		document.getElementById("qtyB").onchange = chkQty3;
+		</script>
+	</body>
+</html>
