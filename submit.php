@@ -3,7 +3,7 @@
 		$file = 'order.txt';
 		$order = fopen($file, 'r')
 			or exit("unable to open file ($file)");
-		for($i=0,$i++,$i<3){
+		for($i=0; $i++; $i<3){
 			$contents[i] = fgets($order);
 		}
 		fclose($order);
@@ -76,9 +76,12 @@
 </body>
 </html>
 <?php
-		$fupdate = fopen("./order.txt", "r+");
+/*
+http://php.net/manual/en/function.ftruncate.php#104455
+> "If you want to empty a file of it's contents bare in mind that opening a file in w mode truncates the file automatically"
+*/
+		$fupdate = fopen("./order.txt", "w");
 		if (flock($fupdate, LOCK_EX)) {     
-			ftruncate($fupdate, 0); 
 			fwrite($fupdate, "Total number of apples: " + $invA);
 			fwrite($fupdate, "Total number of oranges: " + $invO);
 			fwrite($fupdate, "Total number of bananas: " + $invB);
@@ -89,3 +92,4 @@
 		}
 		fclose($fupdate);
 ?>
+
