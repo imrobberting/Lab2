@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <?php
 		$file = 'order.txt';
-		$order = fopen($file, 'r')
-			or exit("unable to open file ($file)");
-		for($i=0; $i++; $i<3){
-			$contents[i] = fgets($order);
+		
+//fix from http://php.net/manual/en/function.fgets.php#92397
+	if(file_exists($file)){
+		if($fhandle = fopen($file,"r")){
+		//tests if at EOF, break if at EOF
+			while (!feof($fhandle)){
+				$contents[] = fgets($fhandle);
+				}
+			fclose($fhandle);
+			}
 		}
-		fclose($order);
+		//fclose($order);
 
 		$invA = substr($contents[0], 24);
 		$invO = substr($contents[1], 25);
@@ -80,14 +86,17 @@
 http://php.net/manual/en/function.ftruncate.php#104455
 > "If you want to empty a file of it's contents bare in mind that opening a file in w mode truncates the file automatically"
 */
-		$fupdate = fopen("./order.txt", "wb");
-		if (flock($fupdate, LOCK_EX)) {     
+	if (file_exists($file)) {
+		$fupdate = fopen("./order.txt", "w");
+		} else {
+			echo "File does not exist";
+		}
+		if (flock($fupdate, LOCK_EX)) {
 			fwrite($fupdate, "Total number of apples: ".$invA."\r\n");
 			fwrite($fupdate, "Total number of oranges: ".$invO."\r\n");
 			fwrite($fupdate, "Total number of bananas: ".$invB."\r\n");
-			flock($fupdate, LOCK_UN); 
-		} 
-		else {
+			flock($fupdate, LOCK_UN);
+		} else {
 			echo "Couldn't get the lock!";
 		}
 		fclose($fupdate);
