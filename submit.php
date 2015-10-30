@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
 		$file = 'order.txt';
-		$order = fopen($file, 'r')
-			or exit("unable to open file ($file)");
+		$order = fopen($file, 'r')
+			or exit("unable to open file ($file)");
 		for(i=0,i++,i<3){
 			$contents[i] = fgets($order);
 		}
@@ -76,16 +76,16 @@
 </body>
 </html>
 <?php
-		$fupdate = fopen("../order.txt", "r+");
-		if (flock($fupdate, LOCK_EX)) {     
-			ftruncate($fupdate, 0); 
-			fwrite($fupdate, "Total number of apples: " + $invA);
-			fwrite($fupdate, "Total number of oranges: " + $invO);
-			fwrite($fupdate, "Total number of bananas: " + $invB);
-			flock($fupdate, LOCK_UN); 
-		} 
-		else {
-			echo "Couldn't get the lock!";
+		$fupdate = fopen("../order.txt", "r+");
+		if (flock($fupdate, LOCK_EX)) {     
+			ftruncate($fupdate, 0); 
+			fwrite($fupdate, "Total number of apples: " + $invA);
+			fwrite($fupdate, "Total number of oranges: " + $invO);
+			fwrite($fupdate, "Total number of bananas: " + $invB);
+			flock($fupdate, LOCK_UN); 
+		} 
+		else {
+			echo "Couldn't get the lock!";
 		}
 		fclose($fp);
 ?>
