@@ -11,8 +11,11 @@
 				}
 			fclose($fhandle);
 			}
+		} else {
+			// this is weird
+			fopen($file,"c+");
+			fclose($file);
 		}
-		//fclose($order);
 
 		$invA = substr($contents[0], 24);
 		$invO = substr($contents[1], 25);
@@ -87,7 +90,7 @@ http://php.net/manual/en/function.ftruncate.php#104455
 > "If you want to empty a file of it's contents bare in mind that opening a file in w mode truncates the file automatically"
 */
 	if (file_exists($file)) {
-		$fupdate = fopen("./order.txt", "w");
+		$fupdate = fopen("./order.txt", "c");
 		} else {
 			echo "File does not exist";
 		}
