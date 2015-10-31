@@ -78,7 +78,7 @@
 		</tr>
 	</table>
 	&nbsp;
-	<a href="../Lab 2/index.htm">Back to Order Form</a>
+	<a href="../Lab2/index.htm">Back to Order Form</a>
 </body>
 </html>
 <?php
