@@ -12,9 +12,7 @@
 			fclose($fhandle);
 			}
 		} else {
-			// this is weird
 			fopen($file,"c+");
-			fclose($file);
 		}
 
 		$invA = substr($contents[0], 24);
