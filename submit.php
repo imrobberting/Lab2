@@ -19,9 +19,15 @@
 		$invO = substr($contents[1], 25);
 		$invB = substr($contents[2], 25);
 
+		$name = $_POST['customer'];
 		$oranges = $_POST['oranges'];
 		$apples = $_POST['apples'];
 		$bananas = $_POST['bananas'];
+		$card = $_POST['card'];
+
+		if($name==null||$oranges==null||!(is_numeric($oranges))||$apples==null||!(is_numeric($apples))||$bananas==null||!(is_numeric($bananas))||$card==null){
+			header("Location: index.htm");
+		}
 
 		$invA = $invA + $apples;
 		$invO = $invO + $oranges;

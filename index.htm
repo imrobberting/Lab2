@@ -40,9 +40,9 @@
         function chkQty3() {
 			var num = document.getElementById("qtyB");
 
-			var chk = num.value.search(/^\d+/);
+			var chk = num.value.search(/^[0-9]+$/);
 
-			if (chk != 0) {
+			if (chk < 0) {
 				alert("Please input a digit.");
 				computeBill();
 			    num.focus();
@@ -107,7 +107,7 @@
 				<input type = "radio" name = "mode" value = "Discover" id="discover"/> Discover
 			</p>
 			&nbsp;
-			<input type = "submit" value = "Submit" onclick = "isEmpty();"/>
+			<input type = "submit" value = "Submit" onclick = "isEmpty();chkQty1();chkQty2();chkQty3();"/>
 		</form>
 		<script type = "text/javascript">
 		document.getElementById("qtyA").onchange = chkQty1;
