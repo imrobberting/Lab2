@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 		$file = 'order.txt';
-		
+
 //fix from http://php.net/manual/en/function.fgets.php#92397
 	if(file_exists($file)){
 		if($fhandle = fopen($file,"r")){
@@ -19,14 +19,15 @@
 		$invO = substr($contents[1], 25);
 		$invB = substr($contents[2], 25);
 
-		$name = $_POST['customer'];
-		$oranges = $_POST['oranges'];
-		$apples = $_POST['apples'];
-		$bananas = $_POST['bananas'];
-		$card = $_POST['card'];
-
-		if($name==null||$oranges==null||!(is_numeric($oranges))||$apples==null||!(is_numeric($apples))||$bananas==null||!(is_numeric($bananas))||$card==null){
-			header("Location: index.htm");
+		//simpler implementation, form checking code http://stackoverflow.com/a/14251049
+		$fields = array('customer','oranges','apples','bananas','mode');
+		$error = false;
+		foreach($fields AS $fieldname) {
+			if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])) {
+					echo "An entry was not filled out. Please check and try again.<br/>" . '<a href="javascript:history.go(-1)">Click here to go back.</a>';
+					//it's not friendly, but does the job
+					die();
+			}
 		}
 
 		$invA = $invA + $apples;
@@ -97,6 +98,7 @@ http://php.net/manual/en/function.ftruncate.php#104455
 		$fupdate = fopen("./order.txt", "c");
 		} else {
 			echo "File does not exist";
+			die();
 		}
 		if (flock($fupdate, LOCK_EX)) {
 			fwrite($fupdate, "Total number of apples: ".$invA."\r\n");
@@ -105,7 +107,7 @@ http://php.net/manual/en/function.ftruncate.php#104455
 			flock($fupdate, LOCK_UN);
 		} else {
 			echo "Couldn't get the lock!";
+			die();
 		}
 		fclose($fupdate);
 ?>
-
