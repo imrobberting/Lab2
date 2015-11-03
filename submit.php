@@ -12,9 +12,10 @@
 			fclose($fhandle);
 			}
 		} else {
-			fopen($file,"c+");
+			fopen($file,"c+");//c is create file function in php
 		}
 
+		//gets current tally
 		$invA = substr($contents[0], 24);
 		$invO = substr($contents[1], 25);
 		$invB = substr($contents[2], 25);
@@ -32,13 +33,14 @@
 		foreach($fields AS $fieldname) {
 			if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])) {
 					echo "An entry was not filled out. Please check and try again.<br/>" . '<a href="javascript:history.go(-1)">Click here to go back.</a>';
-					//it's not friendly, but does the job
+					//javascript:history.go(-1) brings the user back to the former page
 					die();
 			}
 		}
 
+		//checks for negative number and non-numeric input
 		foreach($int_fields AS $number) {
-			if(!is_numeric($_POST[$number]) || $_POST[$number] < 0) { ?>
+			if(!is_numeric($_POST[$number]) || $_POST[$number] < 0) { ?> 
 				<p>Non numerical numbers are not a number, unless this is algebra. But we're not working with algebra. Negative fruits are also impossible (we don't do refunds, if that's what you mean). The Laws of Physics simply cannot allow that.</p>
 				<p>Have a nice day. <a href="javascript:history.go(-1)">Try again?</a></p>
 				<blockquote class="twitter-tweet" lang="en"><p lang="nl" dir="ltr">QA Engineer walks into a bar. Orders a beer. Orders 0 beers. Orders 999999999 beers. Orders a lizard. Orders -1 beers. Orders a sfdeljknesv.</p>&mdash; Bill Sempf (@sempf) <a href="https://twitter.com/sempf/status/514473420277694465">September 23, 2014</a></blockquote>
@@ -47,10 +49,12 @@
 			}
 		}
 
+		//updates tally
 		$invA = $invA + $apples;
 		$invO = $invO + $oranges;
 		$invB = $invB + $bananas;
 
+		//computes cost
 		$O = $oranges*.59;
 		$totalO = number_format($O, 2);
 		$A = $apples*.69;

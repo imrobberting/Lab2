@@ -6,7 +6,7 @@
 		function chkQty1() {
 			var num = document.getElementById("qtyA");
 
-			var chk = num.value.search(/^\d+/);
+			var chk = num.value.search(/^\d+$/);
 
 			if (chk != 0) {
 				alert("Please input a digit.");
@@ -23,7 +23,7 @@
         function chkQty2() {
 			var num = document.getElementById("qtyO");
 
-			var chk = num.value.search(/^\d+/);
+			var chk = num.value.search(/^\d+$/);
 
 			if (chk != 0) {
 				alert("Please input a digit.");
@@ -40,7 +40,7 @@
         function chkQty3() {
 			var num = document.getElementById("qtyB");
 
-			var chk = num.value.search(/^[0-9]+$/);
+			var chk = num.value.search(/^\d+$/);
 
 			if (chk < 0) {
 				alert("Please input a digit.");
@@ -107,6 +107,7 @@
 				<input type = "radio" name = "mode" value = "Discover" id="discover"/> Discover
 			</p>
 			&nbsp;
+			<!--checks for incomplete or improperly answered fields.-->
 			<input type = "submit" value = "Submit" onclick = "isEmpty();chkQty1();chkQty2();chkQty3();"/>
 		</form>
 		<script type = "text/javascript">
