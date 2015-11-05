@@ -4,7 +4,7 @@
 
 //fix from http://php.net/manual/en/function.fgets.php#92397
 	if(file_exists($file)){
-		if($fhandle = fopen($file,"r")){
+		if($fhandle = fopen($file,"rb")){ //open file as binary for compatibility across platforms
 		//tests if at EOF, break if at EOF
 			while (!feof($fhandle)){
 				$contents[] = fgets($fhandle);
@@ -113,7 +113,7 @@ http://php.net/manual/en/function.ftruncate.php#104455
 > "If you want to empty a file of it's contents bare in mind that opening a file in w mode truncates the file automatically"
 */
 	if (file_exists($file)) {
-		$fupdate = fopen("./order.txt", "c");
+		$fupdate = fopen("./order.txt", "cb");
 		} else {
 			echo "File does not exist";
 			die();
