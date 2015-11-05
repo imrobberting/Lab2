@@ -4,54 +4,87 @@
 		<title>Fruit Vendor</title>
 		<script type = "text/javascript">
 		function chkQty1() {
-			var num = document.getElementById("qtyA");
+			var num = document.getElementById("qtyA");//gets string
+			var x = document.getElementById("qtyA").value;//gets number
 
 			var chk = num.value.search(/^\d+$/);
 
 			if (chk != 0) {
-				alert("Please input a digit.");
-				computeBill();
-			    num.focus();
-			    num.select();
-			    return false;
+				if(x < 0) {//negative number case
+					alert("Please input a non-negative digit in the apple text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
+				else {//non-numeric character case
+					alert("Please input a digit in the apple text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
       		} 
-      		else
+      		else {
       			computeBill();
         		return true;
+        	}
         }
 
         function chkQty2() {
 			var num = document.getElementById("qtyO");
+			var x = document.getElementById("qtyO").value;
 
 			var chk = num.value.search(/^\d+$/);
 
 			if (chk != 0) {
-				alert("Please input a digit.");
-				computeBill();
-			    num.focus();
-			    num.select();
-			    return false;
+				if(x < 0) {
+					alert("Please input a non-negative digit in the orange text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
+				else {
+					alert("Please input a digit in the orange text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
       		} 
-      		else
+      		else {
       			computeBill();
         		return true;
+        	}
         }
 
         function chkQty3() {
 			var num = document.getElementById("qtyB");
+			var x = document.getElementById("qtyB").value;
 
 			var chk = num.value.search(/^\d+$/);
 
 			if (chk < 0) {
-				alert("Please input a digit.");
-				computeBill();
-			    num.focus();
-			    num.select();
-			    return false;
+				if(x < 0) {
+					alert("Please input a non-negative digit in the banana text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
+				else {
+					alert("Please input a digit in the banana text field.");
+					document.getElementById("bill").value = "NaN";
+				    num.focus();
+				    num.select();
+				    return false;
+				}
       		} 
-      		else
+      		else {
       			computeBill();
         		return true;
+        	}
         }
 
         function computeBill() {
@@ -59,15 +92,20 @@
         	var o = document.getElementById("qtyO").value;
         	var b = document.getElementById("qtyB").value;
 
-        	var t = a * 0.69 + o * 0.59 + b * 0.39;
-        	total = t.toFixed(2);
-        	document.getElementById("bill").value = total;
+        	if (a < 0 || o < 0 || b < 0) //checks if there are negative inputs from other fields
+        		document.getElementById("bill").value = "NaN";
+        	else {
+        		var t = a * 0.69 + o * 0.59 + b * 0.39;
+	        	total = t.toFixed(2);
+	        	document.getElementById("bill").value = total;
+        	}       	
         }
 
-        function isEmpty() {
+        function isEmpty() {//checks if all fields are complete
         	if (document.getElementById("qtyA").value == "" || document.getElementById("qtyO").value == "" ||document.getElementById("qtyB").value == "" ||
         		document.getElementById("name").value == "" || (document.getElementById("visa").checked == false && document.getElementById("master").checked == false && document.getElementById("discover").checked == false)){
         		alert("Please fill out all fields.");
+        		return false;
         	}
         }
 		</script>

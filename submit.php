@@ -3,6 +3,7 @@
 		$file = 'order.txt';
 
 //fix from http://php.net/manual/en/function.fgets.php#92397
+	//checks if file exists
 	if(file_exists($file)){
 		if($fhandle = fopen($file,"r")){
 		//tests if at EOF, break if at EOF
@@ -12,7 +13,7 @@
 			fclose($fhandle);
 			}
 		} else {
-			fopen($file,"c+");//c is create file function in php
+			fopen($file,"c+");//c is create file function in php. Creates file. From: http://php.net/manual/en/function.fopen.php
 		}
 
 		//gets current tally
@@ -34,7 +35,7 @@
 			if(!isset($_POST[$fieldname]) || empty($_POST[$fieldname])) {
 					echo "An entry was not filled out. Please check and try again.<br/>" . '<a href="javascript:history.go(-1)">Click here to go back.</a>';
 					//javascript:history.go(-1) brings the user back to the former page
-					die();
+					die();//like break(); in Java
 			}
 		}
 
@@ -119,7 +120,7 @@ http://php.net/manual/en/function.ftruncate.php#104455
 			die();
 		}
 		if (flock($fupdate, LOCK_EX)) {
-			fwrite($fupdate, "Total number of apples: ".$invA."\r\n");
+			fwrite($fupdate, "Total number of apples: ".$invA."\r\n"); //for flexibility on multiple OS (Mac, Windows, Linux)
 			fwrite($fupdate, "Total number of oranges: ".$invO."\r\n");
 			fwrite($fupdate, "Total number of bananas: ".$invB."\r\n");
 			flock($fupdate, LOCK_UN);
@@ -129,3 +130,4 @@ http://php.net/manual/en/function.ftruncate.php#104455
 		}
 		fclose($fupdate);
 ?>
+
